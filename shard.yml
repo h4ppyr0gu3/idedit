@@ -1,0 +1,15 @@
+name: webrickcr
+version: 0.1.0
+
+authors:
+  - David Rogers <rogersdpdr@gmail.com>
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+  id3tag: 
+    github: h4ppyr0gu3/id3tag
+
+crystal: 1.4.1
+
+license: MIT

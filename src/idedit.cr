@@ -23,8 +23,6 @@ post "/edit" do |request|
     File.write(image_file, image.to_slice, perm = 0o666, mode = "w+")
 
     mp3_file = File.open(output)
-    tsse = Id3tag::Read.new(mp3_file).read_tag("TSSE")
-    Log.info { tsse }
 
     tag_hash = {
       "TIT2": title,
@@ -33,7 +31,6 @@ post "/edit" do |request|
       "TPE2": artist,
       "TYER": year,
       "TCON": genre,
-      "TSSE": tsse.to_s,
       "APIC": "./#{image_file}",
     }
     

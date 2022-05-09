@@ -12,4 +12,6 @@ ADD . /root/app/
 RUN shards install
 RUN crystal build --release ./src/idedit.cr
 
+EXPOSE 2000
+
 ENTRYPOINT ./entrypoint.sh

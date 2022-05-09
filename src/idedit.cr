@@ -1,7 +1,12 @@
 require "kemal"
 require "id3tag"
 
-post "/" do |request|
+post "/edit" do |request|
+  Log.info { request.params.body["title"] }
+  Log.info { request.params.body["album"] }
+  Log.info { request.params.body["artist"] }
+  Log.info { request.params.body["year"] }
+  Log.info { request.params.body["genre"] }
   begin
     title = request.params.body["title"] #TIT2
     album = request.params.body["album"] # TALB
@@ -19,6 +24,7 @@ post "/" do |request|
 
     mp3_file = File.open(output)
     tsse = Id3tag::Read.new(mp3_file).read_tag("TSSE")
+    Log.info { tsse }
 
     tag_hash = {
       "TIT2": title,
@@ -31,10 +37,14 @@ post "/" do |request|
       "APIC": "./#{image_file}",
     }
     
+    Log.info { "Writing" }
     Id3tag::Write.new(mp3_file).overwrite(tag_hash, output)
+
+    Log.info { "Sending" }
 
     send_file request, "#{output}.mp3", "audio/mp3"
 
+    Log.info { "Cleaning" }
     [ output, image_file, "#{output}.mp3" ].each do |path|
       File.delete(path) if File.exists?(path)
     end

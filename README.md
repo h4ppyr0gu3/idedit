@@ -1,7 +1,20 @@
 # idedit 
 
-This is a simple webserver with one rout as a wrapper around id3tag shard
+This is a simple webserver with one route as a wrapper around id3tag shard
 It uses kemal for routing 
+
+schema:
+
+post: /edit/
+```
+image: binary
+file: binary
+artist: string
+year: string
+genre: string
+title: string
+album: string
+```
 
 port can be set by passing -p flag: `idedit -p 4000`
 port default is 3000

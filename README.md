@@ -1,5 +1,11 @@
 # idedit 
 
+## I worked on this project before i realized how capable ffmpeg was
+
+### ffmpeg command
+My current ffmpeg command to do this is: 
+`ffmpeg -i in.mp3 -i in.jpg -map 0:a -map 1:0  -id3v2_version 4 -metadata title='title' -metadata artist='artist' -metadata album='album' -metadata date='date' -metadata genre='genre' out.mp3`
+
 This is a simple webserver with one route as a wrapper around id3tag shard
 It uses kemal for routing 
 
